@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "firelayer-templates"
+  },
+  "targets": {
+    "firelayer-templates": {
+      "hosting": {
+        "landing": [
+          "firelayer-starter-template"
+        ],
+        "admin": [
+          "firelayer-starter-admin"
+        ]
+      }
+    }
+  }
+}
