@@ -7,5 +7,9 @@
 |
 */
 module.exports = async function({ chalk, open, logger, prompt, targetDir }) {
-  open('https://firelayer.io/templates/landing')
+  const website = 'https://firelayer.io/templates/landing'
+
+  console.log(`Template Documentation - ${chalk.bold.cyan(website)}\n`)
+
+  open(website)
 }
