@@ -30,7 +30,7 @@
         <v-subheader class="mt-1 overline">Menu</v-subheader>
         <v-list-item :to="localePath('/dashboard')" exact>
           <v-list-item-icon>
-            <v-icon>dashboard</v-icon>
+            <v-icon>mdi-view-dashboard</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
@@ -40,7 +40,7 @@
 
         <v-list-item :to="localePath('/dashboard/profile')" exact>
           <v-list-item-icon>
-            <v-icon>account_box</v-icon>
+            <v-icon>mdi-account-box</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>

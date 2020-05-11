@@ -1,4 +1,6 @@
-import * as path from 'path'
+const path = require('path')
+const nodeExternals = require('webpack-node-externals')
+const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 
 const appName = path.basename(path.resolve(process.cwd()))
 const config = JSON.parse(process.env[appName] || '{}')
@@ -14,7 +16,6 @@ const proxy = isProd ? {} : {
 export default {
   generate: { fallback: true },
   mode: 'universal',
-  dev: !isProd,
   srcDir: 'src/',
   /**
    * Environment
@@ -37,7 +38,7 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Material+Icons' }
+      { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css' }
     ]
   },
 
@@ -57,25 +58,14 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/vuetify.js',
     '~/plugins/firebase.js'
-  ],
-
-  /*
-  ** Nuxt.js dev-modules
-  */
-  buildModules: [
-    ['@nuxtjs/vuetify', {
-      customVariables: ['~/assets/styles/vuetify'],
-      optionsPath: '~/config/vuetify.options.js',
-      treeShake: true
-    }]
   ],
 
   /*
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/style-resources',
     ['@nuxtjs/axios', {
       baseURL: '/'
     }],
@@ -105,8 +95,8 @@ export default {
       vueI18n: {
         fallbackLocale: 'en'
       }
-    }],
-    '@nuxtjs/sitemap'
+    }]
+    // '@nuxtjs/sitemap'
   ],
 
   /**
@@ -115,21 +105,15 @@ export default {
   proxy,
 
   /**
-   * Inject SCSS variables globally
+   * Sitemap
    */
-  styleResources: {
-    scss: [
-      '~/assets/styles/vuetify/_index.scss'
-    ]
-  },
-
-  sitemap: {
-    hostname: `https://${config.firebase.authDomain}`,
-    gzip: true,
-    exclude: [
-      '/_static/'
-    ]
-  },
+  // sitemap: {
+  //   hostname: `https://${config.firebase.authDomain}`,
+  //   gzip: true,
+  //   exclude: [
+  //     '/_static/'
+  //   ]
+  // },
 
   /**
    * Manifest file
@@ -145,9 +129,32 @@ export default {
   */
   build: {
     publicPath: '/_static/',
+    transpile: [/^vuetify/],
+    plugins: [
+      new VuetifyLoaderPlugin({})
+    ],
+    loaders: {
+      /**
+       * Inject SCSS variables globally
+       */
+      sass: {
+        prependData: '@import \'~@/assets/styles/vuetify/_index.scss\''
+      },
+      scss: {
+        prependData: '@import \'~@/assets/styles/vuetify/_index.scss\';'
+      }
+    },
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) { }
+    extend (config, ctx) {
+      if (process.server) {
+        config.externals = [
+          nodeExternals({
+            whitelist: [/^vuetify/]
+          })
+        ]
+      }
+    }
   }
 }
