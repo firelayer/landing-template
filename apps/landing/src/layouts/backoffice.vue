@@ -52,8 +52,8 @@
       <template v-slot:append>
         <div class="pa-2 text-center">
           <v-btn small href="https://firelayer.io/docs" target="_blank" text>Docs</v-btn>
-          <v-btn small href="https://github.com/firelayer/starter-template" target="_blank" text>Feedback</v-btn>
-          <v-btn small href="https://github.com/firelayer/starter-template" target="_blank" text>Support</v-btn>
+          <v-btn small href="https://github.com/firelayer/landing-template" target="_blank" text>Feedback</v-btn>
+          <v-btn small href="https://github.com/firelayer/landing-template" target="_blank" text>Support</v-btn>
         </div>
       </template>
     </v-navigation-drawer>
