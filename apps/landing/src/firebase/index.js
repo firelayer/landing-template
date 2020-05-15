@@ -17,4 +17,4 @@ export const realtime = firebase.database
 export const timestamp = firebase.firestore.Timestamp.now
 export const { serverTimestamp } = firebase.firestore.FieldValue
 
-export { Firemodel } from '@firelayer/core/lib/web'
+export { Firemodel } from './models/firemodel'
