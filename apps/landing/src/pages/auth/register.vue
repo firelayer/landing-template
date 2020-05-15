@@ -205,8 +205,6 @@ export default {
         const token = result.credential.accessToken
         const { user } = result
 
-        console.log(user)
-
         // user is authenticated
       } catch (error) {
         const { code, credential, message, email } = error

@@ -2,7 +2,7 @@
   <div>
     <v-card class="pa-2">
       <h3>{{ $t('dashboard.logged') }}</h3>
-      <pre>{{ user }}</pre>
+      <pre>{{ user.email }}</pre>
     </v-card>
   </div>
 </template>
