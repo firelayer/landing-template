@@ -112,6 +112,13 @@ export default {
     ...mapMutations('app', {
       setSettings: 'SET_SETTINGS'
     })
+  },
+  head() {
+    return {
+      meta: [
+        { hid: 'robots', name: 'robots', content: 'noindex, nofollow' }
+      ]
+    }
   }
 }
 </script>

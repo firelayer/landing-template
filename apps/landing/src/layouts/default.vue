@@ -74,12 +74,42 @@
 <script>
 import UserMenu from '../components/common/UserMenu'
 import LangSwitcher from '../components/common/LangSwitcher'
+import config from '../config'
 
 export default {
   name: 'DefaultLayout',
   components: {
     UserMenu,
     LangSwitcher
+  },
+  head() {
+    const { baseUrl } = config
+    const { locales } = this.$i18n
+    const currentLocale = this.$i18n.locale
+    const canonical = `${baseUrl}${this.$route.path}`
+    const pathWithoutLocale = currentLocale === 'en' ? this.$route.path : this.$route.path.replace(`/${currentLocale}`, '')
+    const alternates = []
+
+    locales.forEach((locale) => {
+      alternates.push({
+        rel: 'alternate',
+        hreflang: locale.code,
+        href: locale.code === 'en' ? `${baseUrl}${pathWithoutLocale}` : `${baseUrl}/${locale.code}${pathWithoutLocale}`
+      })
+    })
+
+    const link = [
+      { rel: 'canonical', href: canonical },
+      ...alternates
+    ]
+
+    return {
+      htmlAttrs: { lang: currentLocale },
+      link,
+      meta: [
+        { hid: 'og:url', property: 'og:url', content: canonical }
+      ]
+    }
   }
 }
 </script>
