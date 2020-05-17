@@ -1,6 +1,4 @@
 const path = require('path')
-const nodeExternals = require('webpack-node-externals')
-const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 
 const appName = path.basename(path.resolve(process.cwd()))
 const config = JSON.parse(process.env[appName] || '{}')
@@ -37,8 +35,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap' },
-      { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css' }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap' }
     ]
   },
 
@@ -58,14 +55,34 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/vuetify.js',
     '~/plugins/firebase.js'
   ],
+
+  /**
+   * Build modules
+   */
+  buildModules: [
+    ['@nuxtjs/vuetify', {
+      customVariables: ['~/assets/styles/vuetify'],
+      optionsPath: '~/config/vuetify.options.js',
+      treeShake: true,
+      defaultAssets: {
+        font: false
+      }
+    }]
+  ],
+
+  styleResources: {
+    scss: [
+      '~/assets/styles/vuetify/_index.scss'
+    ]
+  },
 
   /*
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/style-resources',
     ['@nuxtjs/axios', {
       baseURL: '/'
     }],
@@ -108,7 +125,7 @@ export default {
    * Sitemap
    */
   // sitemap: {
-  //   hostname: `https://${config.firebase.authDomain}`,
+  //   hostname: `https://yourdomain.com`,
   //   gzip: true,
   //   exclude: [
   //     '/_static/'
@@ -124,37 +141,25 @@ export default {
     description: 'Firelayer - Jump-start you Firebase Web Project'
   },
 
+  /**
+   * Bundle rendered
+   */
+  render: {
+    bundleRenderer: {
+      shouldPreload: (file, type) => {
+        return ['style', 'font'].includes(type)
+      }
+    }
+  },
   /*
   ** Build configuration
   */
   build: {
     publicPath: '/_static/',
-    transpile: [/^vuetify/],
-    plugins: [
-      new VuetifyLoaderPlugin({})
-    ],
-    loaders: {
-      /**
-       * Inject SCSS variables globally
-       */
-      sass: {
-        prependData: '@import \'~@/assets/styles/vuetify/_index.scss\''
-      },
-      scss: {
-        prependData: '@import \'~@/assets/styles/vuetify/_index.scss\';'
-      }
-    },
+    extractCSS: true,
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
-      if (process.server) {
-        config.externals = [
-          nodeExternals({
-            whitelist: [/^vuetify/]
-          })
-        ]
-      }
-    }
+    extend (config, ctx) {}
   }
 }

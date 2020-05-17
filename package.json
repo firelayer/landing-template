@@ -16,6 +16,7 @@
     "dev": "firelayer run \"lerna run dev --parallel\"",
     "dev:landing": "firelayer run \"cd apps/landing && npm run dev\"",
     "emulators": "firelayer run \"firebase emulators:start\"",
+    "landing": "yarn dev:landing",
     "lint": "lerna run lint",
     "reset": "lerna clean --yes && npm run clean",
     "test": "lerna run test --parallel"
