@@ -1142,12 +1142,12 @@
   resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.2.40.tgz#5215554d2ce1d87329241e8b08ac96e4dd1994ea"
   integrity sha512-f0jc79nQvwcwhOGFAD9b5K55Cb/a0A7LKBdRyQgVFLBGm+MuSFF5Rm/5Ll8/u72hJhbdICQj+xYl2uIuCMdXFQ==
 
-"@firelayer/cli@^1.0.0-alpha.20":
-  version "1.0.0-alpha.21"
-  resolved "https://registry.yarnpkg.com/@firelayer/cli/-/cli-1.0.0-alpha.21.tgz#2b93195610309896ff3e87d5564f2eff8846345e"
-  integrity sha512-/jXfUwqbz21k8WQT0u/eAZfCzrSHFCU8EPpqPVri9KDuxfw3I9ZEQfjT1uu8ASYmzi3PJ7HBo2B8WuMgaRYu0g==
+"@firelayer/cli@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@firelayer/cli/-/cli-1.0.0.tgz#e3f04fcf26af8239f76ae5c88f3c1f2815f38a98"
+  integrity sha512-MZ6Hl2aIKd0UyhqRJY/2wA1o2I7fvdkjL6wGFkYm6bFc0slyGIGgXdygUtHcWoze8mGjtZAhigfttSdSfiH3iQ==
   dependencies:
-    "@firelayer/core" "^1.0.0-alpha.15"
+    "@firelayer/core" "^1.0.0"
     "@oclif/command" "^1"
     "@oclif/config" "^1"
     "@oclif/plugin-help" "^2"
@@ -1167,10 +1167,10 @@
     shelljs "^0.8.3"
     tslib "^1"
 
-"@firelayer/core@^1.0.0-alpha.15":
-  version "1.0.0-alpha.15"
-  resolved "https://registry.yarnpkg.com/@firelayer/core/-/core-1.0.0-alpha.15.tgz#2b93862bbb53ad9c57bcea15ff55dde90bee7dd2"
-  integrity sha512-iF0zFc6O2OrBrdFhmc1f/0o4hocx+EzOSYciH/U++U1xK2p2WD21AmuUhjZvW+PVm5SXYmI6jPvTeqpKdvlZ0w==
+"@firelayer/core@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@firelayer/core/-/core-1.0.0.tgz#2e24bf123d46294cc516a3254e809f2464043743"
+  integrity sha512-AuiUbpuHCHxYhFo31GG23hDVJcX4Sz+Ix/xcX8XGqrjRjmmgm8TI/xYpADSUjtWW3jKmkrNDbHxo+DyS6a/DOw==
   dependencies:
     firebase-admin "8.11.0"
     firebase-functions "^3.6.0"
