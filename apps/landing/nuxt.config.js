@@ -30,6 +30,7 @@ const SEO = {
 export default {
   generate: { fallback: true },
   mode: 'universal',
+  target: 'static',
   srcDir: 'src/',
   /**
    * Environment
