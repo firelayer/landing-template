@@ -7,7 +7,7 @@ const isProd = process.env.NODE_ENV === 'production'
 // Proxy configurations for local development
 const proxy = isProd ? {} : {
   '/api': {
-    target: `http://localhost:5000/${config.firebase.projectId}/api`
+    target: `http://localhost:5000/${config.firebase.projectId}/us-central1/api`
   }
 }
 

@@ -58,7 +58,7 @@
       </template>
     </v-navigation-drawer>
 
-    <v-content>
+    <v-main>
       <client-only>
         <v-container fluid>
           <nuxt v-if="user && !settings.maintenance" />
@@ -74,7 +74,7 @@
           </div>
         </v-container>
       </client-only>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
